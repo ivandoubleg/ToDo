@@ -1,26 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+//import './App.css';
+import React from "react";//los paaarametros se llaman propiedades en JS
+import { TodoCounter } from "./TodoCounter";
+import { TodoList } from "./TodoList";
+import { TodoSearch } from "./TodoSearch";
+import { TodoItem } from "./TodoItem";
+import { CreateTodoButton } from "./CreateTodoButton";
+//import './App.css';
 
-function App(props) {
+const todos =[
+  { text:'ver video', completed: false},
+    {text:'marcar lista', completed: false},
+    {text:'study react ', completed: false}, 
+
+]
+
+function App() {// si empieza con mayuscula es un componente 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hola mundo :) 
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          
-
-          {props.saludo}
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <TodoCounter />
+         <TodoSearch />
+         <TodoList>
+          {todos.map(todo=>(
+            <TodoItem key={todo.text} text ={todo.text}
+            completed = {todo.completed}
+            />
+          ))}
+        </TodoList>
+     <CreateTodoButton />
+      <button>+</button>
+    </React.Fragment>
   );
 }
 
